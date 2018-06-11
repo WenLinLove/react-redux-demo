@@ -46,6 +46,7 @@ class Home extends Component {
                     return(
                       <li onClick={ ()=> this.cli(index) } key={index}>{item.name}</li>
                     )
+                    
                   }else{
 
                     return (

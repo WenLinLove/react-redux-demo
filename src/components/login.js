@@ -6,7 +6,8 @@ class Login extends Component {
   render() {
     return (
       <div>
-          这是login
+          <p>login</p>
+          <p>login</p>
       </div>
     );
   }
