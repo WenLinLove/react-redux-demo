@@ -3,62 +3,32 @@ import { BrowserRouter, Route,Link} from 'react-router-dom'
 import { Provider, connect } from 'react-redux';  
 import {addNum, minuxNum} from '../action/index'
 import {bindActionCreators} from 'redux';
-import PropTypes from 'prop-types';
 
 class Home extends Component {
-    
-  constructor(props) {
-     super(props)
 
-    this.state = {
-      tt: [{
-          name: 'hah1'
-        },
-        {
-          num: 2,
-          name: 'hah2'
-        },
-        {
-          num: 2,
-          name: 'hah2'
-        },
-        {
-          name: 'hah1'
-        }
-      ]
-    }
-}
 
-  cli(index) {
+  back() {
 
-    console.log(index);
+     this.props.history.push('/')
 
   }
 
 
   render() {
-
+      let tha = this;
     return (
       <div>
-           {
-                this.state.tt.map( (item, index) => {
-                  if(item.num == 2){
-                    return(
-                      <li onClick={ ()=> this.cli(index) } key={index}>{item.name}</li>
-                    )
-                    
-                  }else{
-
-                    return (
-                      <p>判断下</p>
-                    )
-
-                  }
-
-                })
-            }
-
-            <p>{this.props.tt.age}</p>
+           <p>{this.props.state.name}</p>
+            <ul>
+                  {
+                      this.props.state.data.map( (item, index) => {
+                        return(
+                          <li onClick={ ()=> tha.props.minuxNum(index) } key={index}>{item.id}</li>
+                        )
+                      })
+                    }
+            </ul>
+            <button onClick={ ()=> this.back()}>返回</button>
       </div>
     );
   }
@@ -71,14 +41,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+
   return (
     bindActionCreators({ addNum, minuxNum}, dispatch)
   )
 
 }
 
-Home.propTypes = {
-  tt: PropTypes.object
-};
-
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+ 

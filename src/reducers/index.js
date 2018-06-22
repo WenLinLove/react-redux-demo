@@ -1,24 +1,12 @@
-//reducer
- 
-function counter(state=[], action){
-    switch (action.type){
-        case 'ADD_NUM':
-            return [ 
-                ...state,  //... 扩展运算符  相当
-                {  
-                    vals: action.val
-                }  
-            ]
-        case 'MINUS_NUM':
-                state.splice(action.index, 1);
-                return state.map((todo, index) => {  
-                    return todo
-                }); 
+//redux 合并 reducer 处理函数
+import { combineReducers } from 'redux';
 
+import user from './user';
+import home from './home';
 
-        default:
-            return state
-    }
- }
- 
-export default counter
+const rootReducer = combineReducers({
+    user,
+    home
+})
+
+export default rootReducer;
